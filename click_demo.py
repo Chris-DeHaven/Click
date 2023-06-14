@@ -1,11 +1,24 @@
+from pathlib import Path
+import json
 import click
 
 @click.command()
-@click.option('--count', default=1, help='number of greetings')
-@click.argument('name')
-def hello(count, name):
-    for x in range(count):
-        click.echo(f"Hello {name}!")
+def open_input_file():
+    click.open_file(Path(__file__).parent / "In")
+@click.command()
+def write_to_output_folder():
+    click.echo('', Path(__file__).parent / "Out")
 
-if __name__ == '__main__':
-    hello()
+# @click.command()
+# def make_json():
+#     click.
+
+@click.command()
+def hello():
+    click.echo('Hello World!')
+
+#Main
+#if __name__ == '__main__':
+#output_folder = get_output_path()
+
+hello()
