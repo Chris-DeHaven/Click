@@ -1,24 +1,27 @@
 from pathlib import Path
 import json
 import click
+from traverse_folders import make_json
+
 
 @click.command()
-def open_input_file():
-    click.open_file(Path(__file__).parent / "In")
-@click.command()
-def write_to_output_folder():
-    click.echo('', Path(__file__).parent / "Out")
+@click.argument(
+    "in_folder",
+    type=click.Path(exists=True, file_okay=False),
+    default=Path(__file__).parent / "In",
+)
+@click.argument(
+    "out_folder",
+    type=click.Path(exists=True, file_okay=False),
+    default=Path(__file__).parent / "Out",
+)
+def main(in_folder, out_folder):
+    print("in_folder = ")
+    print(in_folder)
+    print("out_folder = ")
+    print(out_folder)
 
-# @click.command()
-# def make_json():
-#     click.
 
-@click.command()
-def hello():
-    click.echo('Hello World!')
-
-#Main
-#if __name__ == '__main__':
-#output_folder = get_output_path()
-
-hello()
+# Main
+if __name__ == "__main__":
+    main()
